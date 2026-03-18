@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knives Out Fantasy League</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0F0D0A;
+  --paper: #F4F0E8;
+  --cream: #EDE8DC;
+  --orange: #F99E1C;
+  --orange-dim: #D4770A;
+  --orange-pale: #FEF3E6;
+  --steel: #8C9199;
+  --steel-light: #C8CBD0;
+  --steel-dark: #3C4048;
+  --red: #C0271A;
+  --green: #2A5E38;
+  --gold: #B8860B;
+  --white: #FDFCFA;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 24px 80px;
+}
+
+.hero-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-lines {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 38px,
+    rgba(249,158,28,0.06) 38px,
+    rgba(249,158,28,0.06) 39px
+  );
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  padding: 6px 18px;
+  margin-bottom: 44px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero-knife-svg {
+  width: 44px;
+  filter: drop-shadow(0 0 20px rgba(249,158,28,0.5));
+}
+
+.hero-logo-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.15s ease both;
+  line-height: 1;
+}
+
+.logo-knives, .logo-out {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(72px, 15vw, 160px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -3px;
+  line-height: 1;
+}
+
+.logo-knives {
+  color: #F99E1C;
+  text-shadow: 0 0 40px rgba(249,158,28,0.3);
+}
+
+.logo-out {
+  color: #C8CBD0;
+  /* Chrome-like metallic gradient matching logo */
+  background: linear-gradient(180deg, #E8E9EA 0%, #C4C5C6 30%, #F0F1F3 60%, #B0B1B2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-knife-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  margin-bottom: 0;
+}
+
+.logo-knife-svg {
+  height: clamp(80px, 16vw, 168px);
+  width: auto;
+  filter: drop-shadow(0 0 18px rgba(249,158,28,0.25));
+}
+
+.logo-sub-line {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(14px, 2.5vw, 24px);
+  font-weight: 400;
+  letter-spacing: clamp(6px, 1.5vw, 14px);
+  text-transform: uppercase;
+  color: var(--steel);
+  text-align: center;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-sub {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255,255,255,0.45);
+  margin-top: 28px;
+  max-width: 420px;
+  text-align: center;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.25s ease both;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(249,158,28,0.3);
+  margin-top: 52px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.35s ease both;
+}
+
+.hero-stat {
+  padding: 18px 32px;
+  border-right: 1px solid rgba(249,158,28,0.2);
+  text-align: center;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat .n {
+  font-family: 'Oswald', sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--orange);
+  display: block;
+  line-height: 1;
+}
+.hero-stat .l {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  display: block;
+  margin-top: 4px;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeUp 1s 0.5s ease both;
+}
+.hero-scroll span {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(249,158,28,0.6), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--ink);
+  border-bottom: 2px solid var(--orange);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow-x: auto;
+}
+.nav-inner {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+nav a {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  padding: 14px 18px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+nav a:hover { color: var(--orange); border-color: var(--orange); }
+nav a .nav-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+nav a:hover .nav-dot { opacity: 1; }
+
+/* ── SECTIONS ── */
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+
+section { padding: 80px 0; border-bottom: 1px solid var(--steel-light); }
+section:last-of-type { border-bottom: none; }
+
+.sec-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--orange);
+  opacity: 0.3;
+  max-width: 80px;
+}
+
+h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+h2 em { font-style: normal; color: var(--orange); }
+
+h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--steel-dark);
+  margin: 40px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--steel-light);
+}
+
+p { font-size: 15px; line-height: 1.75; color: #3A3530; margin-bottom: 14px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── HOW IT WORKS CARDS ── */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+  margin: 32px 0;
+  background: var(--steel-light);
+  border: 2px solid var(--ink);
+}
+.how-card {
+  background: var(--white);
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+.how-card:hover { background: var(--orange-pale); }
+.how-card::before {
+  content: attr(data-num);
+  font-family: 'Oswald', sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: rgba(249,158,28,0.07);
+  position: absolute;
+  bottom: -10px;
+  right: 12px;
+  line-height: 1;
+}
+.how-card-icon {
+  font-size: 24px;
+  margin-bottom: 14px;
+  display: block;
+}
+.how-card h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.how-card p { font-size: 13px; color: #5A5550; margin: 0; line-height: 1.6; }
+
+/* ── SCORING ── */
+.scoring-section { background: var(--ink); color: var(--white); }
+
+.scoring-section h2 { color: var(--white); }
+.scoring-section h2 em { color: var(--orange); }
+.scoring-section h3 { color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.1); }
+.scoring-section p { color: rgba(255,255,255,0.65); }
+.scoring-section .sec-label { color: var(--orange); }
+
+.score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+@media (max-width: 640px) { .score-grid { grid-template-columns: 1fr; } }
+
+.score-block {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  overflow: hidden;
+}
+.score-block-head {
+  background: rgba(249,158,28,0.15);
+  border-bottom: 1px solid rgba(249,158,28,0.3);
+  padding: 12px 18px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 14px;
+  transition: background 0.15s;
+}
+.score-row:last-child { border-bottom: none; }
+.score-row:hover { background: rgba(255,255,255,0.04); }
+.score-row .event { color: rgba(255,255,255,0.8); }
+.score-pts {
+  font-family: 'Space Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  min-width: 44px;
+  text-align: right;
+}
+.score-pts.pos { color: #5EC97A; }
+.score-pts.neg { color: #E87070; }
+
+.bonus-band {
+  background: rgba(249,158,28,0.08);
+  border: 1px solid rgba(249,158,28,0.2);
+  padding: 24px;
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.bonus-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bonus-item .pts {
+  font-family: 'Space Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+}
+.bonus-item .desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+}
+
+/* ── DRAFT ── */
+.draft-section { background: var(--cream); }
+
+.snake-viz {
+  display: grid;
+  grid-template-columns: auto repeat(6, 1fr);
+  gap: 3px;
+  margin: 28px 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
+.snake-head {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 8px 10px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.snake-round-label {
+  background: var(--ink);
+  color: var(--orange);
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.snake-cell {
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.snake-cell.a1, .snake-cell.a2 { background: #E8F4EC; color: var(--green); }
+.snake-cell.b1, .snake-cell.b2 { background: #E8F0F8; color: #1A4A8A; }
+.snake-cell.c1, .snake-cell.c2 { background: #F8EEE8; color: var(--orange-dim); }
+
+.pick-note {
+  background: white;
+  border-left: 3px solid var(--orange);
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3A3530;
+}
+.pick-note strong {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+/* ── ROSTER LAYOUT ── */
+.roster-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+@media (max-width: 620px) { .roster-layout { grid-template-columns: 1fr; } }
+
+.roster-couple {
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+.roster-head {
+  background: var(--ink);
+  color: white;
+  padding: 12px 16px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--orange);
+}
+.roster-partner {
+  padding: 16px;
+  border-bottom: 1px solid var(--steel-light);
+}
+.roster-partner:last-child { border-bottom: none; }
+.roster-partner-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 8px;
+}
+.chef-slot {
+  background: var(--cream);
+  border: 1px dashed var(--steel-light);
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--steel);
+  font-style: italic;
+  margin-bottom: 6px;
+  font-family: 'Libre Baskerville', serif;
+}
+.chef-slot:last-child { margin-bottom: 0; }
+
+/* ── RULES ── */
+.rules-section { background: var(--white); }
+
+.rule-item {
+  border: 1px solid var(--steel-light);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.rule-item:hover { border-color: var(--orange); }
+.rule-head {
+  background: #F8F6F2;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: default;
+}
+.rule-icon {
+  width: 28px; height: 28px;
+  background: var(--ink);
+  color: var(--orange);
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.rule-head h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+}
+.rule-body {
+  padding: 18px 20px;
+  border-top: 1px solid var(--steel-light);
+  font-size: 14px;
+  line-height: 1.7;
+  color: #3A3530;
+}
+
+/* ── PRIZES ── */
+.prizes-section { background: var(--ink); }
+.prizes-section h2 { color: var(--white); }
+.prizes-section h2 em { color: var(--orange); }
+.prizes-section p { color: rgba(255,255,255,0.6); }
+.prizes-section .sec-label { color: var(--orange); }
+
+.prize-podium {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 32px 0;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+@media (max-width: 540px) { .prize-podium { grid-template-columns: 1fr; } }
+
+.prize-card {
+  padding: 36px 24px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.prize-card:last-child { border-right: none; }
+.prize-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.prize-card.gold::before { background: var(--orange); }
+.prize-card.silver::before { background: #9AA0AA; }
+.prize-card.booby::before { background: var(--red); border-top-style: dashed; }
+
+.prize-card .trophy-icon { font-size: 36px; display: block; margin-bottom: 16px; }
+.prize-card h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.prize-card.gold h4 { color: var(--orange); }
+.prize-card.silver h4 { color: #9AA0AA; }
+.prize-card.booby h4 { color: #E87070; }
+.prize-card p { font-size: 12px; color: rgba(255,255,255,0.4); margin: 0; }
+
+/* ── FOOTER ── */
+footer {
+  background: #080706;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 40px 24px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  border-top: 2px solid var(--orange);
+}
+footer strong { color: var(--orange); letter-spacing: 3px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 36px 0;
+  opacity: 0.2;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+.divider span { font-size: 16px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .hero-stats { flex-direction: column; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(249,158,28,0.2); }
+  .hero-stat:last-child { border-bottom: none; }
+  .snake-viz { font-size: 9px; }
+  .snake-cell { padding: 8px 4px; font-size: 9px; }
+}
+
+/* ── CALLOUT ── */
+.callout {
+  padding: 18px 22px;
+  border-left: 3px solid;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.callout.gold { background: #FAF5E8; border-color: var(--gold); color: #3A3220; }
+.callout.blue { background: #E8F0FA; border-color: #1A4A8A; color: #1A2840; }
+.callout > strong:first-child {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+.callout strong {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.callout.gold strong { color: var(--gold); }
+.callout.blue strong { color: #1A4A8A; }
+
+/* ── HERO LOGO TITLE ── */
+.hero-logo-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.15s ease both;
+  line-height: 1;
+  gap: 0;
+}
+
+.logo-knives {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(68px, 14vw, 150px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: #F99E1C;
+  text-shadow: 0 0 50px rgba(249,158,28,0.25);
+}
+
+.logo-out {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(68px, 14vw, 150px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1;
+  background: linear-gradient(180deg, #F0F1F3 0%, #C4C5C6 30%, #EEEFF1 60%, #A8A9AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-knife-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.logo-knife-svg {
+  height: clamp(80px, 16vw, 172px);
+  width: auto;
+  filter: drop-shadow(0 2px 14px rgba(0,0,0,0.65));
+}
+
+.logo-sub-line {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(13px, 2.2vw, 22px);
+  font-weight: 400;
+  letter-spacing: clamp(8px, 1.8vw, 16px);
+  text-transform: uppercase;
+  color: var(--steel);
+  text-align: center;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.22s ease both;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<div class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-eyebrow">Season 23 &nbsp;·&nbsp; Three Couples &nbsp;·&nbsp; One Winner</div>
+
+  <div class="hero-logo-title">
+    <span class="logo-knives">KNIVES</span>
+    <span class="logo-knife-wrap">
+      <svg class="logo-knife-svg" viewBox="0 0 48 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bladeGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#DADADB"/>
+            <stop offset="25%" stop-color="#F0F1F3"/>
+            <stop offset="55%" stop-color="#C4C5C6"/>
+            <stop offset="100%" stop-color="#A8A9AA"/>
+          </linearGradient>
+          <linearGradient id="bolsterGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F4F5F7"/>
+            <stop offset="50%" stop-color="#EEEFF1"/>
+            <stop offset="100%" stop-color="#C8C9CD"/>
+          </linearGradient>
+          <linearGradient id="handleGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#7C7C7E"/>
+            <stop offset="35%" stop-color="#C8C9CD"/>
+            <stop offset="65%" stop-color="#D4D5D9"/>
+            <stop offset="100%" stop-color="#7C7C7E"/>
+          </linearGradient>
+        </defs>
+
+        <!-- BLADE
+             Classic chef's knife: straight spine down the left,
+             belly curves out to wide heel at bottom-right, tip at top.
+             Spine = left edge (x≈10), edge belly = right side curving out.
+        -->
+        <!-- Main blade body -->
+        <path d="
+          M 13 4
+          L 11 92
+          L 32 92
+          C 32 75  30 55  26 36
+          C 22 18  16 8   13 4
+          Z"
+          fill="url(#bladeGrad)"/>
+
+        <!-- Spine highlight (left edge, very thin bright strip) -->
+        <path d="M 13 4 L 11.5 92 L 13 92 L 14 8 Z"
+              fill="rgba(255,255,255,0.45)"/>
+
+        <!-- Bevel / grind line running from near-spine down toward edge -->
+        <line x1="14.5" y1="12" x2="29" y2="90"
+              stroke="#AEAFB0" stroke-width="0.5" opacity="0.7"/>
+
+        <!-- Edge highlight (bright reflection along the belly) -->
+        <path d="M 26 36 C 30 55 32 75 32 92"
+              stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none"/>
+
+        <!-- BOLSTER — wide collar, slightly wider than blade -->
+        <rect x="8" y="92" width="26" height="7" rx="0.5"
+              fill="url(#bolsterGrad)"/>
+        <line x1="8"  y1="92" x2="34" y2="92"
+              stroke="rgba(255,255,255,0.85)" stroke-width="0.7"/>
+        <line x1="8"  y1="99" x2="34" y2="99"
+              stroke="rgba(0,0,0,0.12)" stroke-width="0.4"/>
+
+        <!-- HANDLE -->
+        <rect x="9.5" y="99" width="23" height="52" rx="3"
+              fill="url(#handleGrad)"/>
+        <!-- Top glint -->
+        <rect x="9.5" y="99" width="23" height="3" rx="1.5"
+              fill="rgba(255,255,255,0.22)"/>
+        <!-- Bottom cap -->
+        <rect x="9.5" y="148" width="23" height="3" rx="1.5"
+              fill="#6A6A6C"/>
+
+        <!-- THREE RIVETS -->
+        <circle cx="21" cy="109" r="2.8" fill="#7D7C81"/>
+        <circle cx="21" cy="109" r="1.6" fill="#9C9C9E"/>
+
+        <circle cx="21" cy="121" r="2.8" fill="#7D7C81"/>
+        <circle cx="21" cy="121" r="1.6" fill="#9C9C9E"/>
+
+        <circle cx="21" cy="133" r="2.8" fill="#7D7C81"/>
+        <circle cx="21" cy="133" r="1.6" fill="#9C9C9E"/>
+      </svg>
+    </span>
+    <span class="logo-out">OUT</span>
+  </div>
+  <div class="logo-sub-line">Fantasy League</div>
+
+  <p class="hero-sub">Draft your chefs. Pool your points. Watch every week.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="n">3</span>
+      <span class="l">Couples</span>
+    </div>
+    <div class="hero-stat">
+      <span class="n">2</span>
+      <span class="l">Per Partner</span>
+    </div>
+    <div class="hero-stat">
+      <span class="n">12</span>
+      <span class="l">Chefs Drafted</span>
+    </div>
+    <div class="hero-stat">
+      <span class="n">0</span>
+      <span class="l">Original Thoughts from Gail</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#how"><span class="nav-dot"></span>How It Works</a>
+    <a href="#scoring"><span class="nav-dot"></span>Scoring</a>
+    <a href="#draft"><span class="nav-dot"></span>Draft Format</a>
+    <a href="#roster"><span class="nav-dot"></span>Your Roster</a>
+    <a href="#rules"><span class="nav-dot"></span>Rules</a>
+    <a href="#prizes"><span class="nav-dot"></span>Prizes</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HOW IT WORKS ═══════════════════════ -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-label">01 &nbsp;·&nbsp; How It Works</div>
+    <h2>The <em>Concept</em></h2>
+
+    <p>Three couples. Each couple drafts 4 real Top Chef contestants — 2 per partner. Every episode, your chefs earn or lose points based on what actually happens on screen. Both partners' scores pool together into one couple total, and the couple with the most points at the end of the season wins. One of your chefs will eventually hear "pack your knives and go." Try to make sure it's someone else's.</p>
+    <p>There's also an individual leaderboard tracking each partner's personal score from their own 2 chefs — so you're playing <em>with</em> your partner and <em>against</em> them simultaneously.</p>
+
+    <div class="how-grid">
+      <div class="how-card" data-num="1">
+        <span class="how-card-icon">✍️</span>
+        <h4>Draft Day</h4>
+        <p>Snake draft. Each couple picks 4 chefs total — Partners A and B each choose 2. 12 of the 13 available chefs get drafted; one sits out all season.</p>
+      </div>
+      <div class="how-card" data-num="2">
+        <span class="how-card-icon">📺</span>
+        <h4>Watch Every Episode</h4>
+        <p>Points are earned each episode based on Quickfire and Elimination results. The commissioner tracks scores and posts the leaderboard.</p>
+      </div>
+      <div class="how-card" data-num="3">
+        <span class="how-card-icon">📊</span>
+        <h4>Pool Your Points</h4>
+        <p>All 4 of your couple's chefs score every week. Both leaderboards update — the couples standings and the individual player rankings.</p>
+      </div>
+      <div class="how-card" data-num="4">
+        <span class="how-card-icon">🏆</span>
+        <h4>Win the Season</h4>
+        <p>The couple with the highest combined total at the finale wins. Consistency beats flash — a team whose chefs regularly finish top-3 will dominate.</p>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <strong>The two-competition twist</strong>
+      There are two competitions happening at once. The <strong>Couples Leaderboard</strong> (all 4 chefs' scores pooled) is the main event. The <strong>Individual Leaderboard</strong> ranks each partner by their own 2 chefs only — bragging rights inside your couple.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SCORING ═══════════════════════════ -->
+<section id="scoring" class="scoring-section">
+  <div class="wrap">
+    <div class="sec-label">02 &nbsp;·&nbsp; Scoring System</div>
+    <h2>Every Point Counts — <em>This is Top Chef. Not Top Scallops.</em></h2>
+    <p>Points are tracked per chef, per episode. A well-rounded roster beats a gamble on one big name. Points stack — a chef who wins the Quickfire <em>and</em> the Elimination in the same episode is having a very good week for your couple.</p>
+    <p style="font-style:italic;color:#6A6560;">Consistency wins — even Gail could tell you that, if she had an original thought.</p>
+
+    <div class="score-grid">
+      <div class="score-block">
+        <div class="score-block-head">⚡ Quickfire Challenge</div>
+        <div class="score-row">
+          <span class="event">Win</span>
+          <span class="score-pts pos">+5</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Runner-Up</span>
+          <span class="score-pts pos">+2</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Bottom</span>
+          <span class="score-pts neg">−2</span>
+        </div>
+      </div>
+
+      <div class="score-block">
+        <div class="score-block-head">🔪 Elimination Challenge</div>
+        <div class="score-row">
+          <span class="event">Win</span>
+          <span class="score-pts pos">+10</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Top 3 (not winner)</span>
+          <span class="score-pts pos">+4</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Safe / Middle Pack</span>
+          <span class="score-pts pos">+1</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Bottom 3 (not eliminated)</span>
+          <span class="score-pts neg">−3</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Eliminated</span>
+          <span class="score-pts neg">−8</span>
+        </div>
+      </div>
+
+      <div class="score-block">
+        <div class="score-block-head">🔄 Last Chance Kitchen</div>
+        <div class="score-row">
+          <span class="event">LCK Win (survives)</span>
+          <span class="score-pts pos">+2</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Returns to main competition</span>
+          <span class="score-pts pos">+4</span>
+        </div>
+      </div>
+
+      <div class="score-block">
+        <div class="score-block-head">⭐ Season-Long Bonuses</div>
+        <div class="score-row">
+          <span class="event">Win the entire season</span>
+          <span class="score-pts pos">+20</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Reach the finale (Top 3)</span>
+          <span class="score-pts pos">+8</span>
+        </div>
+        <div class="score-row">
+          <span class="event">Restaurant Wars winning team</span>
+          <span class="score-pts pos">+6</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ DRAFT ═══════════════════════════════ -->
+<section id="draft" class="draft-section">
+  <div class="wrap">
+    <div class="sec-label">03 &nbsp;·&nbsp; Draft Format</div>
+    <h2>Draft Format — <em>Pack Your Knives</em> if You Pick Wrong</h2>
+
+    <p>Snake draft. Couple order is drawn randomly before draft day. Within each couple, you and your partner decide who picks first. Each pick has a 90-second clock. Your time starts... NOW. If you're still debating at 80 seconds, you're already flaming out like Jen Carroll in Season 8.</p>
+
+    <p><strong>The pool:</strong> 12 chefs available (the 2 eliminated in Episodes 1–2 are out). All 12 get drafted across 2 rounds — 2 picks per person, 4 per couple. No chef goes undrafted.</p>
+
+    <h3>Draft Order — Random Individual Draw</h3>
+
+    <p>All 6 players draw individually from a bowl — no couple gets a structural advantage. Whatever order comes out is the snake order for all 4 rounds. The example below shows one possible result; yours will be determined on draft day.</p>
+
+    <div class="snake-viz">
+      <div class="snake-head" style="grid-column:1"></div>
+      <div class="snake-head">Pick 1</div>
+      <div class="snake-head">Pick 2</div>
+      <div class="snake-head">Pick 3</div>
+      <div class="snake-head">Pick 4</div>
+      <div class="snake-head">Pick 5</div>
+      <div class="snake-head">Pick 6</div>
+
+      <div class="snake-round-label">Round 1</div>
+      <div class="snake-cell a2">A2</div>
+      <div class="snake-cell c1">C1</div>
+      <div class="snake-cell b1">B1</div>
+      <div class="snake-cell a1">A1</div>
+      <div class="snake-cell b2">B2</div>
+      <div class="snake-cell c2">C2</div>
+
+      <div class="snake-round-label">Round 2 ↩</div>
+      <div class="snake-cell c2">C2</div>
+      <div class="snake-cell b2">B2</div>
+      <div class="snake-cell a1">A1</div>
+      <div class="snake-cell b1">B1</div>
+      <div class="snake-cell c1">C1</div>
+      <div class="snake-cell a2">A2</div>
+    </div>
+
+    <div class="pick-note">
+      <strong>Example only</strong> — actual draw order decided on draft day. Each person picks twice across 2 rounds and ends with exactly 2 chefs. Your couple's 4 chefs are whoever you and your partner each draft.
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ROSTER ═══════════════════════════════ -->
+<section id="roster">
+  <div class="wrap">
+    <div class="sec-label">04 &nbsp;·&nbsp; Roster Structure</div>
+    <h2>Your <em>Four</em> Chefs</h2>
+
+    <p>Each couple fields 4 chefs — 2 belong to each partner. All 4 score every week they appear. When one of your chefs gets eliminated, their owner scores with 1 chef for the rest of the season. No replacements, no trades between couples. You drafted them, you ride with them. Pack your regrets instead. And whatever you do — do not let your chef make risotto.</p>
+
+    <div class="roster-layout">
+      <div class="roster-couple">
+        <div class="roster-head">Couple A</div>
+        <div class="roster-partner">
+          <div class="roster-partner-label">Partner A1</div>
+          <div class="chef-slot">Chef 1 — TBD on draft day</div>
+          <div class="chef-slot">Chef 2 — TBD on draft day</div>
+        </div>
+        <div class="roster-partner">
+          <div class="roster-partner-label">Partner A2</div>
+          <div class="chef-slot">Chef 3 — TBD on draft day</div>
+          <div class="chef-slot">Chef 4 — TBD on draft day</div>
+        </div>
+      </div>
+
+      <div class="roster-couple">
+        <div class="roster-head">Couple B</div>
+        <div class="roster-partner">
+          <div class="roster-partner-label">Partner B1</div>
+          <div class="chef-slot">Chef 1 — TBD on draft day</div>
+          <div class="chef-slot">Chef 2 — TBD on draft day</div>
+        </div>
+        <div class="roster-partner">
+          <div class="roster-partner-label">Partner B2</div>
+          <div class="chef-slot">Chef 3 — TBD on draft day</div>
+          <div class="chef-slot">Chef 4 — TBD on draft day</div>
+        </div>
+      </div>
+
+      <div class="roster-couple">
+        <div class="roster-head">Couple C</div>
+        <div class="roster-partner">
+          <div class="roster-partner-label">Partner C1</div>
+          <div class="chef-slot">Chef 1 — TBD on draft day</div>
+          <div class="chef-slot">Chef 2 — TBD on draft day</div>
+        </div>
+        <div class="roster-partner">
+          <div class="roster-partner-label">Partner C2</div>
+          <div class="chef-slot">Chef 3 — TBD on draft day</div>
+          <div class="chef-slot">Chef 4 — TBD on draft day</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ RULES ═══════════════════════════════ -->
+<section id="rules" class="rules-section">
+  <div class="wrap">
+    <div class="sec-label">05 &nbsp;·&nbsp; Rules &amp; Edge Cases</div>
+    <h2>The <em>Fine Print</em></h2>
+    <p>These rules have more structure than Gail's feedback. The commissioner has final say on anything not listed here — think of them as Tom, but with less flannel. And if the commissioner's own chef is in a disputed call, another couple co-arbitrates that dispute only.</p>
+
+    <div class="rule-item">
+      <div class="rule-head">
+        <div class="rule-icon">T</div>
+        <h4>Ties at Season End</h4>
+      </div>
+      <div class="rule-body">
+        If two couples end with identical total points, the tiebreaker goes in order: (1) most total Elimination Challenge wins across all 4 chefs, (2) most Top-3 finishes, (3) coin flip on a video call with all 3 couples present.
+      </div>
+    </div>
+
+
+
+    <div class="rule-item">
+      <div class="rule-head">
+        <div class="rule-icon">✕</div>
+        <h4>Chef Quits or Can't Continue</h4>
+      </div>
+      <div class="rule-body">
+        If a chef leaves for any reason other than elimination (medical, personal, production issue), their owner gets <strong>no negative points</strong>. That chef scores 0 going forward; their partner plays out the season with their remaining chef.
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-head">
+        <div class="rule-icon">2</div>
+        <h4>Double Elimination Episodes</h4>
+      </div>
+      <div class="rule-body">
+        Both chefs score −8. If both eliminated chefs belong to the same couple, that's a brutal week — both partners now each have 1 chef left. Two eliminations in one week. Tom doesn't enjoy it either. (He does.)
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-head">
+        <div class="rule-icon">↩</div>
+        <h4>Last Chance Kitchen Return</h4>
+      </div>
+      <div class="rule-body">
+        When a chef re-enters the main competition from LCK, they automatically re-activate on their original couple's roster. The returning chef earns the +4 return bonus and resumes normal scoring from that episode forward.
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PRIZES ═══════════════════════════════ -->
+<section id="prizes" class="prizes-section">
+  <div class="wrap">
+    <div class="sec-label">06 &nbsp;·&nbsp; Glory &amp; Prizes</div>
+    <h2>What You're <em>Actually</em> Playing For</h2>
+    <p>Prizes are TBD — but three things will be recognized at season's end. Choose your motivation accordingly.</p>
+
+    <div class="prize-podium" style="grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 32px auto;">
+      <div class="prize-card gold">
+        <span class="trophy-icon">🏆</span>
+        <h4>Winning Couple</h4>
+        <p>Highest combined 4-chef total at season's end. The main event. Bragging rights for a full year.</p>
+      </div>
+      <div class="prize-card silver">
+        <span class="trophy-icon">⭐</span>
+        <h4>Individual MVP</h4>
+        <p>The partner with the highest personal 2-chef total — regardless of how their couple finished overall.</p>
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <strong>KNIVES OUT FANTASY LEAGUE</strong><br><br>
+  3 couples &nbsp;·&nbsp; 12 chefs &nbsp;·&nbsp; 4 rounds &nbsp;·&nbsp; 1 winner<br>
+  <span style="margin-top:8px;display:block;font-size:11px;">May the best couple win.</span>
+
+</footer>
+
+</body>
+</html>
