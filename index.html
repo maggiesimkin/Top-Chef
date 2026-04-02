@@ -45,7 +45,7 @@
   .hero h1 .sub-word { color: white; font-size: 0.45em; display: block; font-weight: 600; letter-spacing: 6px; margin-top: 8px; }
   .hero .subtitle { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 32px; letter-spacing: 0.3px; }
   .hero-meta { display: inline-flex; border: 1px solid rgba(255,255,255,0.1); border-radius: 2px; flex-wrap: nowrap; }
-  .hero-meta-item { text-align: center; padding: 14px 22px; border-right: 1px solid rgba(255,255,255,0.1); min-width: 0; }
+  .hero-meta-item { text-align: center; padding: 14px 22px; border-right: 1px solid rgba(255,255,255,0.1); min-width: 140px; }
   .hero-meta-item:last-child { border-right: none; }
   .hero-meta-item .num { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--orange); display: block; line-height: 1; }
   .hero-meta-item .label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
@@ -241,24 +241,14 @@
   <div class="hero-badge">Commissioner's Complete Handbook</div>
   <h1>
     <span class="top-word">Knives</span><span class="hero-knife"><svg width="22" height="90" viewBox="0 0 22 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- BLADE: tip at top-center, spine straight on left, belly curves right -->
-      <!-- Main blade body -->
       <path d="M10 2 C10 2 7 4 7 8 L6 52 L16 52 C16 52 16 38 14 22 C12 10 10 2 10 2Z" fill="#C4C5C6"/>
-      <!-- Spine (left flat of blade - slightly lighter to show thickness) -->
       <path d="M10 2 C10 2 7 4 7 8 L6 52 L8 52 L8.5 10 Z" fill="#DADADB"/>
-      <!-- Blade bevel / grind line -->
       <line x1="8" y1="10" x2="14.5" y2="51" stroke="#AEAFB0" stroke-width="0.5"/>
-      <!-- BOLSTER: wide collar, slightly wider than handle, acts as guard -->
       <rect x="4" y="52" width="14" height="5" rx="0.5" fill="#8A8B8C"/>
-      <!-- Bolster highlight top edge -->
       <line x1="4" y1="52" x2="18" y2="52" stroke="#B0B1B2" stroke-width="0.5"/>
-      <!-- HANDLE: dark composite/wood -->
       <rect x="5.5" y="57" width="11" height="30" rx="2" fill="#2E2E2E"/>
-      <!-- Handle top highlight -->
       <rect x="5.5" y="57" width="11" height="2" rx="1" fill="#484848"/>
-      <!-- Handle bottom cap -->
       <rect x="5.5" y="84" width="11" height="3" rx="1.5" fill="#222"/>
-      <!-- THREE RIVETS (brass/gold colored) -->
       <circle cx="11" cy="63.5" r="2" fill="#9A8060"/>
       <circle cx="11" cy="63.5" r="1.2" fill="#C4A882"/>
       <circle cx="11" cy="71.5" r="2" fill="#9A8060"/>
@@ -273,7 +263,6 @@
     <div class="hero-meta-item"><span class="num">3</span><span class="label">Couples</span></div>
     <div class="hero-meta-item"><span class="num">12</span><span class="label">Chefs Drafted</span></div>
     <div class="hero-meta-item"><span class="num">4</span><span class="label">Draft Rounds</span></div>
-    <div class="hero-meta-item"><span class="num">13</span><span class="label">Chefs Available</span></div>
   </div>
 </div>
 
@@ -459,8 +448,8 @@
     <table>
       <thead><tr><th>Event</th><th>Points</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>LCK Win (survives elimination)</td><td class="pts pos">+6</td><td>Scored in the week the LCK episode airs, not the main episode</td></tr>
-        <tr><td>Chef returns from LCK to main competition</td><td class="pts pos">+4</td><td>Bonus on top of LCK win; re-activates the chef on their couple&rsquo;s roster</td></tr>
+        <tr><td>LCK Win (survives elimination)</td><td class="pts pos">+3</td><td>Scored in the week the LCK episode airs, not the main episode</td></tr>
+        <tr><td>Chef returns from LCK to main competition</td><td class="pts pos">+10</td><td>Bonus on top of LCK win; re-activates the chef on their couple&rsquo;s roster</td></tr>
       </tbody>
     </table>
   </div>
@@ -559,8 +548,6 @@
     </div>
   </div>
 
-
-
   <h3>Last Chance Kitchen Edge Cases</h3>
   <div class="rule-box">
     <div class="rule-box-header">Rule: Chef Returns from LCK</div>
@@ -568,8 +555,6 @@
       <p>When a chef re-enters the main competition from LCK, they are automatically re-activated on their original couple&rsquo;s roster. The returning chef scores the +4 return bonus and resumes normal scoring from that episode forward.</p>
     </div>
   </div>
-
-
 
   <h3>Commissioner Decision Point</h3>
   <div class="commissioner-choice">
@@ -690,9 +675,11 @@
         <tr><td>Safe / Middle</td><td class="pts pos">+1</td></tr>
         <tr><td>Bottom 3 (not eliminated)</td><td class="pts neg">&minus;3</td></tr>
         <tr><td>Eliminated</td><td class="pts neg">&minus;8</td></tr>
-        <tr><td>LCK Win</td><td class="pts pos">+6</td></tr>
-        <tr><td>Return from LCK</td><td class="pts pos">+4</td></tr>
+        <tr><td>LCK Win</td><td class="pts pos">+3</td></tr>
+        <tr><td>Return from LCK</td><td class="pts pos">+10</td></tr>
         <tr><td>Restaurant Wars winning team</td><td class="pts pos">+6</td></tr>
+        <tr><td>Reach the finale</td><td class="pts pos">+8</td></tr>
+        <tr><td>Win the season</td><td class="pts pos">+20</td></tr>
       </tbody>
     </table>
   </div>
@@ -804,8 +791,6 @@
 
     <div id="score-entry"></div>
 
-
-
     <div style="margin-top:48px;">
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--charcoal);border-bottom:2px solid var(--border);padding-bottom:8px;margin-bottom:20px;">Couples Leaderboard</h3>
       <div id="couples-leaderboard"></div>
@@ -828,7 +813,7 @@
 const SCORING = {
   'QF Win': 5, 'QF Runner-Up': 2, 'QF Bottom': -2,
   'Elim Win': 10, 'Top 3': 4, 'Safe': 1, 'Bottom 3': -3, 'Eliminated': -8,
-  'LCK Win': 6, 'LCK Return': 4,
+  'LCK Win': 3, 'LCK Return': 10,
   'Restaurant Wars Win': 6, 'Finale': 8, 'Season Win': 20
 };
 
@@ -847,11 +832,78 @@ const DEFAULT_TEAMS = [
   ]}
 ];
 
-let teams = JSON.parse(localStorage.getItem('kofl_teams') || 'null') || DEFAULT_TEAMS;
-let scores = JSON.parse(localStorage.getItem('kofl_scores') || '{"Ep 3__0-0-0": 8, "Ep 3__0-0-1": -10, "Ep 3__0-1-0": 4, "Ep 3__0-1-1": -1, "Ep 3__1-0-0": 9, "Ep 3__1-0-1": -1, "Ep 3__1-1-0": -3, "Ep 3__1-1-1": -3, "Ep 3__2-0-0": -3, "Ep 3__2-0-1": -3, "Ep 3__2-1-0": -3, "Ep 3__2-1-1": -3}');
-let scoreDetails = JSON.parse(localStorage.getItem('kofl_score_details') || '{"Ep 3__0-0-0": ["QF Bottom", "Elim Win"], "Ep 3__0-0-1": ["QF Bottom", "Eliminated"], "Ep 3__0-1-0": ["Top 3"], "Ep 3__0-1-1": ["QF Runner-Up", "Bottom 3"], "Ep 3__1-0-0": ["QF Win", "Top 3"], "Ep 3__1-0-1": ["QF Runner-Up", "Bottom 3"], "Ep 3__1-1-0": ["Bottom 3"], "Ep 3__1-1-1": ["Bottom 3"], "Ep 3__2-0-0": ["Bottom 3"], "Ep 3__2-0-1": ["Bottom 3"], "Ep 3__2-1-0": ["Bottom 3"], "Ep 3__2-1-1": ["Bottom 3"]}');
-let episodes = JSON.parse(localStorage.getItem('kofl_episodes') || '["Ep 3","Ep 4","Ep 5"]');
+// Ep 3 scores:
+// 0-0-0 Laurence: QF Bottom (-2) + Elim Win (+10) = 8
+// 0-0-1 Nana: QF Bottom (-2) + Eliminated (-8) = -10
+// 0-1-0 Brandon: Top 3 (+4) = 4  [wait, original had 4 — keeping]
+// 0-1-1 Duyen: QF Runner-Up (+2) + Bottom 3 (-3) = -1
+// 1-0-0 Anthony: QF Win (+5) + Top 3 (+4) = 9
+// 1-0-1 Rhoda: QF Runner-Up (+2) + Bottom 3 (-3) = -1  [original had -1]
+// 1-1-0 Oscar: Bottom 3 (-3) = -3
+// 1-1-1 Justin: Bottom 3 (-3) = -3
+// 2-0-0 Jennifer: Bottom 3 (-3) = -3
+// 2-0-1 Sherry: Bottom 3 (-3) = -3
+// 2-1-0 Sieger: Bottom 3 (-3) = -3
+// 2-1-1 Jonathan: Bottom 3 (-3) = -3
+
+// Ep 4 scores:
+// 0-0-0 Laurence: QF Bottom (-2) + Top 3 (+4) = 2
+// 0-0-1 Nana: eliminated, no score
+// 0-1-0 Duyen: QF Runner-Up (+2) = 2  [Duyen is 0-1-0? No — Igor is partner index 1]
+// Wait: teams[0] = Simkin. partners[0]=Maggie (chefs: Laurence, Nana). partners[1]=Igor (chefs: Brandon, Duyen)
+// So: 0-1-0 = Brandon, 0-1-1 = Duyen
+// Brandon: QF Bottom (-2) = -2
+// Duyen: QF Runner-Up (+2) = 2
+// teams[1] = Steadman. partners[0]=Katie (Anthony, Rhoda). partners[1]=Scott (Oscar, Justin)
+// 1-0-0 Anthony: QF Runner-Up (+2) + Bottom 3 (-3) = -1
+// 1-0-1 Rhoda: QF Bottom (-2) = -2
+// 1-1-0 Oscar: QF Bottom (-2) = -2
+// 1-1-1 Justin: QF Win (+5) = 5
+// teams[2] = Chen-Perkins. partners[0]=Yang (Jennifer, Sherry). partners[1]=Nate (Sieger, Jonathan)
+// 2-0-0 Jennifer: QF Win (+5) + Bottom 3 (-3) = 2
+// 2-0-1 Sherry: QF Bottom (-2) + Top 3 (+4) = 2
+// 2-1-0 Sieger: QF Win (+5) + Elim Win (+10) = 15
+// 2-1-1 Jonathan: QF Runner-Up (+2) = 2
+
+let scores = JSON.parse(localStorage.getItem('kofl_scores') || JSON.stringify({
+  "Ep 3__0-0-0": 8, "Ep 3__0-0-1": -10, "Ep 3__0-1-0": 4, "Ep 3__0-1-1": -1,
+  "Ep 3__1-0-0": 9, "Ep 3__1-0-1": -1, "Ep 3__1-1-0": -3, "Ep 3__1-1-1": -3,
+  "Ep 3__2-0-0": -3, "Ep 3__2-0-1": -3, "Ep 3__2-1-0": -3, "Ep 3__2-1-1": -3,
+  "Ep 4__0-0-0": 2, "Ep 4__0-0-1": 3, "Ep 4__0-1-0": -1, "Ep 4__0-1-1": 3,
+  "Ep 4__1-0-0": -1, "Ep 4__1-0-1": -1, "Ep 4__1-1-0": -1, "Ep 4__1-1-1": 6,
+  "Ep 4__2-0-0": 2, "Ep 4__2-0-1": 2, "Ep 4__2-1-0": 15, "Ep 4__2-1-1": 3
+}));
+
+let scoreDetails = JSON.parse(localStorage.getItem('kofl_score_details') || JSON.stringify({
+  "Ep 3__0-0-0": ["QF Bottom", "Elim Win"],
+  "Ep 3__0-0-1": ["QF Bottom", "Eliminated"],
+  "Ep 3__0-1-0": ["Top 3"],
+  "Ep 3__0-1-1": ["QF Runner-Up", "Bottom 3"],
+  "Ep 3__1-0-0": ["QF Win", "Top 3"],
+  "Ep 3__1-0-1": ["QF Runner-Up", "Bottom 3"],
+  "Ep 3__1-1-0": ["Bottom 3"],
+  "Ep 3__1-1-1": ["Bottom 3"],
+  "Ep 3__2-0-0": ["Bottom 3"],
+  "Ep 3__2-0-1": ["Bottom 3"],
+  "Ep 3__2-1-0": ["Bottom 3"],
+  "Ep 3__2-1-1": ["Bottom 3"],
+  "Ep 4__0-0-0": ["QF Bottom", "Top 3"],
+  "Ep 4__0-0-1": ["LCK Win"],
+  "Ep 4__0-1-0": ["QF Bottom", "Safe"],
+  "Ep 4__0-1-1": ["QF Runner-Up", "Safe"],
+  "Ep 4__1-0-0": ["QF Runner-Up", "Bottom 3"],
+  "Ep 4__1-0-1": ["QF Bottom", "Safe"],
+  "Ep 4__1-1-0": ["QF Bottom", "Safe"],
+  "Ep 4__1-1-1": ["QF Win", "Safe"],
+  "Ep 4__2-0-0": ["QF Win", "Bottom 3"],
+  "Ep 4__2-0-1": ["QF Bottom", "Top 3"],
+  "Ep 4__2-1-0": ["QF Win", "Elim Win"],
+  "Ep 4__2-1-1": ["QF Runner-Up", "Safe"]
+}));
+
+let episodes = JSON.parse(localStorage.getItem('kofl_episodes') || '["Ep 3","Ep 4"]');
 let eliminated = JSON.parse(localStorage.getItem('kofl_eliminated') || '{"0-0-1":true}');
+let teams = JSON.parse(localStorage.getItem('kofl_teams') || 'null') || DEFAULT_TEAMS;
 
 // TABS
 function switchTab(tab) {
@@ -874,10 +926,8 @@ function renderTeams() {
     html += '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:-0.5px;color:var(--charcoal);margin-bottom:20px;">' + team.name + '</div>';
     team.partners.forEach(function(p, pi) {
       var tag = pi === 0 ? 'tag-a' : 'tag-b';
-      var partnerLabel = pi === 0 ? 'A' : 'B';
       html += '<div class="partner-section">';
       html += '<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;">';
-      
       html += '<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:800;color:var(--charcoal);">' + p.name + '</span>';
       if (p.fantasyName) {
         html += '<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:13px;font-weight:600;color:var(--muted);font-style:italic;">' + p.fantasyName + '</span>';
@@ -916,7 +966,7 @@ function renderEpisodeSelect() {
   var html = '';
   episodes.forEach(function(ep, i) { html += '<option value="' + i + '">' + ep + '</option>'; });
   sel.innerHTML = html;
-  sel.value = 0;
+  sel.value = episodes.length - 1;
 }
 
 function addEpisode() {
@@ -924,7 +974,7 @@ function addEpisode() {
   episodes.push('Ep ' + next);
   localStorage.setItem('kofl_episodes', JSON.stringify(episodes));
   renderEpisodeSelect();
-  document.getElementById('ep-select').value = 0;
+  document.getElementById('ep-select').value = episodes.length - 1;
   renderScoreEntry();
 }
 
@@ -934,13 +984,24 @@ function renderScoreEntry() {
   var ep = episodes[epIdx];
   var container = document.getElementById('score-entry');
 
-  var pills = '';
-  Object.keys(SCORING).forEach(function(k) {
-    var v = SCORING[k];
-    pills += '<span class="qr-pill ' + (v > 0 ? 'qr-pos' : 'qr-neg') + '">' + k + ': ' + (v > 0 ? '+' : '') + v + '</span>';
+  var pillGroups = [
+    { label: 'Quickfire', keys: ['QF Win', 'QF Runner-Up', 'QF Bottom'] },
+    { label: 'Elimination', keys: ['Elim Win', 'Top 3', 'Safe', 'Bottom 3', 'Eliminated'] },
+    { label: 'LCK', keys: ['LCK Win', 'LCK Return'] },
+    { label: 'Season', keys: ['Restaurant Wars Win', 'Finale', 'Season Win'] }
+  ];
+  var pills = '<div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px;">';
+  pillGroups.forEach(function(group) {
+    pills += '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">';
+    pills += '<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-right:2px;">' + group.label + '</span>';
+    group.keys.forEach(function(k) {
+      var v = SCORING[k];
+      pills += '<span class="qr-pill ' + (v > 0 ? 'qr-pos' : 'qr-neg') + '">' + k + ': ' + (v > 0 ? '+' : '') + v + '</span>';
+    });
+    pills += '</div>';
   });
-
-  var html = '<div class="quick-ref">' + pills + '</div>';
+  pills += '</div>';
+  var html = pills;
   html += '<table class="score-table"><thead><tr><th>Chef</th><th>Partner</th><th>Breakdown</th><th>This episode</th><th style="background:rgba(247,148,29,0.15);">Running Total</th></tr></thead><tbody>';
 
   teams.forEach(function(team, ti) {
@@ -960,7 +1021,7 @@ function renderScoreEntry() {
         html += '<td><span class="partner-tag ' + tagClass + '">' + p.name + '</span></td>';
         var detailKey = ep + '__' + key;
         var events = scoreDetails[detailKey] || [];
-        var SCORING_MAP = {'QF Win':5,'QF Runner-Up':2,'QF Bottom':-2,'Elim Win':10,'Top 3':4,'Safe':1,'Bottom 3':-3,'Eliminated':-8,'LCK Win':6,'LCK Return':4,'Restaurant Wars Win':6,'Finale':8,'Season Win':20};
+        var SCORING_MAP = {'QF Win':5,'QF Runner-Up':2,'QF Bottom':-2,'Elim Win':10,'Top 3':4,'Safe':1,'Bottom 3':-3,'Eliminated':-8,'LCK Win':3,'LCK Return':10,'Restaurant Wars Win':6,'Finale':8,'Season Win':20};
         var pillsHtml = events.map(function(ev) {
           var pts = SCORING_MAP[ev] || 0;
           var pos = pts >= 0;
@@ -970,7 +1031,9 @@ function renderScoreEntry() {
           return '<span style="display:inline-block;font-family:sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:2px 7px;border-radius:1px;margin:1px 2px 1px 0;background:' + bg + ';color:' + col + '">' + ev + ' (' + sign + pts + ')</span>';
         }).join('');
         html += '<td style="white-space:nowrap;">' + (pillsHtml || '<span style="color:var(--muted);font-size:12px;">—</span>') + '</td>';
-        var displayVal = val !== '' ? (val > 0 ? '+' + val : val) : '—'; var valColor = val > 0 ? 'var(--green)' : val < 0 ? 'var(--red)' : 'var(--muted)'; html += '<td style="font-family:\'DM Mono\',monospace;font-size:14px;font-weight:600;color:' + valColor + ';' + (isElim ? 'opacity:0.4;' : '') + '">' + displayVal + '</td>';
+        var displayVal = val !== '' ? (val > 0 ? '+' + val : val) : '—';
+        var valColor = val > 0 ? 'var(--green)' : val < 0 ? 'var(--red)' : 'var(--muted)';
+        html += '<td style="font-family:\'DM Mono\',monospace;font-size:14px;font-weight:600;color:' + valColor + ';' + (isElim ? 'opacity:0.4;' : '') + '">' + displayVal + '</td>';
         html += '<td style="font-family:\'DM Mono\',monospace;font-weight:600;font-size:15px;color:' + totalColor + ';background:rgba(247,148,29,0.07);">' + (total >= 0 ? '+' : '') + total + '</td>';
         html += '</tr>';
       });
@@ -988,13 +1051,6 @@ function getChefTotal(ti, pi, ci) {
     if (scores[key]) total += scores[key];
   });
   return total;
-}
-
-function saveScores() {
-  localStorage.setItem('kofl_scores', JSON.stringify(scores));
-  var msg = document.getElementById('scores-saved-msg');
-  msg.style.display = 'inline';
-  setTimeout(function() { msg.style.display = 'none'; }, 2000);
 }
 
 // LEADERBOARDS
