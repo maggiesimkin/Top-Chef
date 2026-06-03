@@ -814,6 +814,7 @@ const SCORING = {
   'QF Win': 5, 'QF Runner-Up': 2, 'QF Bottom': -2,
   'Elim Win': 10, 'Top 3': 4, 'Safe': 1, 'Bottom 3': -3, 'Eliminated': -8,
   'LCK Win': 3, 'LCK Return': 10,
+  'H2H Win': 1, 'H2H Loss': -1,
   'Restaurant Wars Win': 6, 'Finale': 8, 'Season Win': 20
 };
 
@@ -871,7 +872,31 @@ let scores = JSON.parse(localStorage.getItem('kofl_scores') || JSON.stringify({
   "Ep 3__2-0-0": -3, "Ep 3__2-0-1": -3, "Ep 3__2-1-0": -3, "Ep 3__2-1-1": -3,
   "Ep 4__0-0-0": 2, "Ep 4__0-0-1": 3, "Ep 4__0-1-0": -1, "Ep 4__0-1-1": 3,
   "Ep 4__1-0-0": -1, "Ep 4__1-0-1": -1, "Ep 4__1-1-0": -1, "Ep 4__1-1-1": 6,
-  "Ep 4__2-0-0": 2, "Ep 4__2-0-1": 2, "Ep 4__2-1-0": 15, "Ep 4__2-1-1": 3
+  "Ep 4__2-0-0": 2, "Ep 4__2-0-1": 2, "Ep 4__2-1-0": 15, "Ep 4__2-1-1": 3,
+  "Ep 5__0-0-0": -3, "Ep 5__0-1-0": 6, "Ep 5__0-1-1": 4,
+  "Ep 5__1-0-0": 10, "Ep 5__1-0-1": -7, "Ep 5__1-1-0": -5, "Ep 5__1-1-1": 1,
+  "Ep 5__2-0-0": 1, "Ep 5__2-0-1": 2, "Ep 5__2-1-0": 3, "Ep 5__2-1-1": 3,
+  "Ep 6__0-0-0": 11, "Ep 6__0-1-0": 5, "Ep 6__0-1-1": 3,
+  "Ep 6__1-0-0": 3, "Ep 6__1-1-0": -4, "Ep 6__1-1-1": 3,
+  "Ep 6__2-0-0": -2, "Ep 6__2-0-1": 5, "Ep 6__2-1-0": -9, "Ep 6__2-1-1": -4,
+  "Ep 7__0-0-0": 4, "Ep 7__0-1-0": 6, "Ep 7__0-1-1": -5,
+  "Ep 7__1-0-0": 15, "Ep 7__1-0-1": 3, "Ep 7__1-1-0": -3, "Ep 7__1-1-1": -10,
+  "Ep 7__2-0-0": -1, "Ep 7__2-0-1": 4, "Ep 7__2-1-1": 6,
+  "Ep 8__0-0-0": 6, "Ep 8__0-1-0": -8, "Ep 8__0-1-1": 16,
+  "Ep 8__1-0-0": 6, "Ep 8__1-0-1": 3, "Ep 8__1-1-0": -3,
+  "Ep 8__2-0-1": 6, "Ep 8__2-1-0": -3, "Ep 8__2-1-1": -3,
+  "Ep 9__0-0-0": 10, "Ep 9__0-1-1": 1,
+  "Ep 9__1-0-0": 6, "Ep 9__1-0-1": 7, "Ep 9__1-1-0": -8,
+  "Ep 9__2-0-1": 1, "Ep 9__2-1-0": 1, "Ep 9__2-1-1": 6,
+  "Ep 10__0-0-0": 8, "Ep 10__0-1-1": -6,
+  "Ep 10__1-0-0": 4, "Ep 10__1-0-1": 9,
+  "Ep 10__2-0-1": 1, "Ep 10__2-1-0": -5, "Ep 10__2-1-1": 4,
+  "Ep 11__0-0-0": 3, "Ep 11__1-0-0": -10, "Ep 11__1-0-1": 6,
+  "Ep 11__2-0-1": 8, "Ep 11__2-1-0": 6, "Ep 11__2-1-1": -5,
+  "Ep 12__0-0-0": 4, "Ep 12__1-0-1": 10,
+  "Ep 12__2-0-1": 4, "Ep 12__2-1-0": -8, "Ep 12__2-1-1": -3,
+  "Ep 13__0-0-0": -1, "Ep 13__1-0-1": 6,
+  "Ep 13__2-0-1": 12, "Ep 13__2-1-1": -10
 }));
 
 let scoreDetails = JSON.parse(localStorage.getItem('kofl_score_details') || JSON.stringify({
@@ -898,11 +923,81 @@ let scoreDetails = JSON.parse(localStorage.getItem('kofl_score_details') || JSON
   "Ep 4__2-0-0": ["QF Win", "Bottom 3"],
   "Ep 4__2-0-1": ["QF Bottom", "Top 3"],
   "Ep 4__2-1-0": ["QF Win", "Elim Win"],
-  "Ep 4__2-1-1": ["QF Runner-Up", "Safe"]
+  "Ep 4__2-1-1": ["QF Runner-Up", "Safe"],
+  "Ep 5__0-0-0": ["Bottom 3"],
+  "Ep 5__0-1-0": ["QF Win", "Safe"],
+  "Ep 5__0-1-1": ["Top 3"],
+  "Ep 5__1-0-0": ["Elim Win"],
+  "Ep 5__1-0-1": ["QF Bottom", "Eliminated", "LCK Win"],
+  "Ep 5__1-1-0": ["QF Bottom", "Bottom 3"],
+  "Ep 5__1-1-1": ["Safe"],
+  "Ep 5__2-0-0": ["Safe"],
+  "Ep 5__2-0-1": ["QF Bottom", "Top 3"],
+  "Ep 5__2-1-0": ["QF Runner-Up", "Safe"],
+  "Ep 5__2-1-1": ["QF Runner-Up", "Safe"],
+  "Ep 6__0-0-0": ["Elim Win", "H2H Win"],
+  "Ep 6__0-1-0": ["Top 3", "H2H Win"],
+  "Ep 6__0-1-1": ["Top 3", "H2H Loss"],
+  "Ep 6__1-0-0": ["Top 3", "H2H Loss"],
+  "Ep 6__1-1-0": ["Bottom 3", "H2H Loss"],
+  "Ep 6__1-1-1": ["QF Win", "Bottom 3", "H2H Win"],
+  "Ep 6__2-0-0": ["Bottom 3", "H2H Win"],
+  "Ep 6__2-0-1": ["Top 3", "H2H Win"],
+  "Ep 6__2-1-0": ["Eliminated", "H2H Loss"],
+  "Ep 6__2-1-1": ["Bottom 3", "H2H Loss"],
+  "Ep 7__0-0-0": ["Top 3"],
+  "Ep 7__0-1-0": ["QF Win", "Safe"],
+  "Ep 7__0-1-1": ["QF Bottom", "Bottom 3"],
+  "Ep 7__1-0-0": ["QF Win", "Elim Win"],
+  "Ep 7__1-0-1": ["LCK Win"],
+  "Ep 7__1-1-0": ["Bottom 3"],
+  "Ep 7__1-1-1": ["QF Bottom", "Eliminated"],
+  "Ep 7__2-0-0": ["QF Bottom", "Safe"],
+  "Ep 7__2-0-1": ["Top 3"],
+  "Ep 7__2-1-1": ["QF Win", "Safe"],
+  "Ep 8__0-0-0": ["Restaurant Wars Win"],
+  "Ep 8__0-1-0": ["Eliminated"],
+  "Ep 8__0-1-1": ["Elim Win", "Restaurant Wars Win"],
+  "Ep 8__1-0-0": ["Restaurant Wars Win"],
+  "Ep 8__1-0-1": ["LCK Win"],
+  "Ep 8__1-1-0": ["Bottom 3"],
+  "Ep 8__2-0-1": ["Restaurant Wars Win"],
+  "Ep 8__2-1-0": ["Bottom 3"],
+  "Ep 8__2-1-1": ["Bottom 3"],
+  "Ep 9__0-0-0": ["Elim Win"],
+  "Ep 9__0-1-1": ["Safe"],
+  "Ep 9__1-0-0": ["QF Win", "Safe"],
+  "Ep 9__1-0-1": ["Bottom 3", "LCK Return"],
+  "Ep 9__1-1-0": ["Eliminated"],
+  "Ep 9__2-0-1": ["Safe"],
+  "Ep 9__2-1-0": ["Safe"],
+  "Ep 9__2-1-1": ["QF Runner-Up", "Top 3"],
+  "Ep 10__0-0-0": ["QF Bottom", "Elim Win"],
+  "Ep 10__0-1-1": ["QF Runner-Up", "Eliminated"],
+  "Ep 10__1-0-0": ["Top 3"],
+  "Ep 10__1-0-1": ["QF Win", "Top 3"],
+  "Ep 10__2-0-1": ["Safe"],
+  "Ep 10__2-1-0": ["QF Bottom", "Bottom 3"],
+  "Ep 10__2-1-1": ["Top 3"],
+  "Ep 11__0-0-0": ["QF Runner-Up", "Safe"],
+  "Ep 11__1-0-0": ["QF Bottom", "Eliminated"],
+  "Ep 11__1-0-1": ["QF Win", "Safe"],
+  "Ep 11__2-0-1": ["QF Bottom", "Elim Win"],
+  "Ep 11__2-1-0": ["QF Runner-Up", "Top 3"],
+  "Ep 11__2-1-1": ["QF Bottom", "Bottom 3"],
+  "Ep 12__0-0-0": ["Top 3"],
+  "Ep 12__1-0-1": ["Elim Win"],
+  "Ep 12__2-0-1": ["Top 3"],
+  "Ep 12__2-1-0": ["Eliminated"],
+  "Ep 12__2-1-1": ["Bottom 3"],
+  "Ep 13__0-0-0": ["QF Bottom", "Safe"],
+  "Ep 13__1-0-1": ["QF Win", "Safe"],
+  "Ep 13__2-0-1": ["QF Runner-Up", "Elim Win"],
+  "Ep 13__2-1-1": ["QF Bottom", "Eliminated"]
 }));
 
-let episodes = JSON.parse(localStorage.getItem('kofl_episodes') || '["Ep 3","Ep 4"]');
-let eliminated = JSON.parse(localStorage.getItem('kofl_eliminated') || '{"0-0-1":true}');
+let episodes = JSON.parse(localStorage.getItem('kofl_episodes') || '["Ep 3","Ep 4","Ep 5","Ep 6","Ep 7","Ep 8","Ep 9","Ep 10","Ep 11","Ep 12","Ep 13"]');
+let eliminated = JSON.parse(localStorage.getItem('kofl_eliminated') || '{"0-0-1":true,"0-1-0":true,"0-1-1":true,"1-0-0":true,"1-1-0":true,"1-1-1":true,"2-0-0":true,"2-1-0":true,"2-1-1":true}');
 let teams = JSON.parse(localStorage.getItem('kofl_teams') || 'null') || DEFAULT_TEAMS;
 
 // TABS
@@ -1021,7 +1116,7 @@ function renderScoreEntry() {
         html += '<td><span class="partner-tag ' + tagClass + '">' + p.name + '</span></td>';
         var detailKey = ep + '__' + key;
         var events = scoreDetails[detailKey] || [];
-        var SCORING_MAP = {'QF Win':5,'QF Runner-Up':2,'QF Bottom':-2,'Elim Win':10,'Top 3':4,'Safe':1,'Bottom 3':-3,'Eliminated':-8,'LCK Win':3,'LCK Return':10,'Restaurant Wars Win':6,'Finale':8,'Season Win':20};
+        var SCORING_MAP = {'QF Win':5,'QF Runner-Up':2,'QF Bottom':-2,'Elim Win':10,'Top 3':4,'Safe':1,'Bottom 3':-3,'Eliminated':-8,'LCK Win':3,'LCK Return':10,'H2H Win':1,'H2H Loss':-1,'Restaurant Wars Win':6,'Finale':8,'Season Win':20};
         var pillsHtml = events.map(function(ev) {
           var pts = SCORING_MAP[ev] || 0;
           var pos = pts >= 0;
